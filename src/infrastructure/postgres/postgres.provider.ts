@@ -16,6 +16,10 @@ export const PostgresProvider: Provider = {
       user: configService.get('DB_USER'),
       password: configService.get('DB_PASSWORD'),
       debug: isDevMode,
+      transform: {
+        ...postgres.camel,
+        undefined: null,
+      },
     });
   },
   inject: [ConfigService<Config>],

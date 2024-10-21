@@ -36,8 +36,8 @@ export class FulfillItemsMigration implements Migration {
   private getItemsToCreate(skinportItems: SkinportItem[], skinportTradableItems: SkinportItem[]): Item[] {
     return skinportItems.map((item, index) => ({
       name: item.market_hash_name,
-      min_price: item.min_price,
-      min_price_tradable: skinportTradableItems[index]?.min_price ?? 0,
+      minPrice: item.min_price,
+      minPriceTradable: skinportTradableItems[index]?.min_price ?? 0,
     }));
   }
 }

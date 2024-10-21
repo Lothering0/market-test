@@ -1,8 +1,10 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { Item } from 'src/models/items/item.model';
 import { CreateItemsService } from './create-items.service';
+import { AuthGuard } from 'src/application/auth/auth.guard';
 
 @Controller()
+@UseGuards(AuthGuard)
 export class CreateItemsController {
   constructor(private readonly createItemsService: CreateItemsService) {}
 
