@@ -1,10 +1,10 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthRepository } from './auth.repository';
+import { UsersRepository } from 'src/repositories/users.repository';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly authRepository: AuthRepository) {}
+  constructor(private readonly usersRepository: UsersRepository) {}
 
   async canActivate(context: ExecutionContext) {
     const accessToken = this.getAccessTokenFromContext(context);
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
   }
 
   private async verifyAccessToken(accessToken: string) {
-    const isTokenValid = await this.authRepository.isAccessTokenValid(accessToken);
+    const isTokenValid = await this.usersRepository.isAccessTokenValid(accessToken);
 
     if (!isTokenValid) {
       throw new UnauthorizedException();

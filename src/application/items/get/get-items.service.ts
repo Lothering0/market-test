@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { GetItemsRepository } from './get-items.repository';
+import { ItemsRepository } from 'src/repositories/items.repository';
 
 @Injectable()
 export class GetItemsService {
-  constructor(private readonly getItemsRepository: GetItemsRepository) {}
+  constructor(private readonly itemsRepository: ItemsRepository) {}
 
   getMany() {
-    return this.getItemsRepository.getMany();
+    return this.itemsRepository.getMany();
   }
 }

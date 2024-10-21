@@ -6,7 +6,7 @@ import { POSTGRES_INJECTION_TOKEN } from 'src/infrastructure/postgres/postgres.i
 import { Item } from 'src/models/items/item.model';
 
 @Injectable()
-export class GetItemsRepository {
+export class ItemsRepository {
   constructor(
     @Inject(POSTGRES_INJECTION_TOKEN)
     private readonly sql: Sql,
@@ -27,5 +27,9 @@ export class GetItemsRepository {
 
     this.cacheManager.set(CACHE_KEY, data, TTL);
     return data;
+  }
+
+  create(items: Item[]) {
+    return this.sql<Item[]>`INSERT INTO items ${this.sql(items)}`;
   }
 }

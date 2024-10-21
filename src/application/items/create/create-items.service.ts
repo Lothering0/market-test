@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateItemsRepository } from './create-items.repository';
 import { Item } from 'src/models/items/item.model';
+import { ItemsRepository } from 'src/repositories/items.repository';
 
 @Injectable()
 export class CreateItemsService {
-  constructor(private readonly createItemsRepository: CreateItemsRepository) {}
+  constructor(private readonly itemsRepository: ItemsRepository) {}
 
   async create(items: Item[]) {
-    await this.createItemsRepository.insert(items);
+    await this.itemsRepository.create(items);
   }
 }
