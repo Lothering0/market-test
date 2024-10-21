@@ -7,12 +7,15 @@ import { Config } from '../config/config.interface';
 export const PostgresProvider: Provider = {
   provide: POSTGRES_INJECTION_TOKEN,
   useFactory: (configService: ConfigService<Config>) => {
+    const isDevMode = configService.get('MODE') === 'DEV';
+
     return postgres({
       host: configService.get('DB_HOST'),
       port: configService.get('DB_PORT'),
       database: configService.get('DB_NAME'),
       user: configService.get('DB_USER'),
       password: configService.get('DB_PASSWORD'),
+      debug: isDevMode,
     });
   },
   inject: [ConfigService<Config>],
