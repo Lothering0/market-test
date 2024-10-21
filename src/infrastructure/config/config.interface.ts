@@ -5,4 +5,5 @@ export interface Config {
   DB_NAME: string;
   DB_USER: string;
   DB_PASSWORD: string;
+  REDIS_URL: string;
 }
