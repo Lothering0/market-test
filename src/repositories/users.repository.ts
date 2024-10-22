@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Sql } from 'postgres';
+import { ResultMeta, Sql } from 'postgres';
 import { POSTGRES_INJECTION_TOKEN } from 'src/infrastructure/postgres/postgres.injection-token';
 import { User } from 'src/models/users/user.model';
 import { createModel } from 'src/utils/create-model';
@@ -19,14 +19,15 @@ export class UsersRepository {
     return createModel(User, user);
   }
 
-  async isAccessTokenValid(accessToken: string) {
-    const result = await this.sql<User[]>`
+  async isAccessTokenValid(accessToken: string, userId: number) {
+    const [{ count }] = await this.sql<ResultMeta<number>[]>`
       SELECT COUNT(*)
         FROM users
-       WHERE access_token = ${accessToken}
+       WHERE id           = ${userId}
+         AND access_token = ${accessToken}
     `;
 
-    const isAccessTokenExists = result.count > 0;
+    const isAccessTokenExists = count > 0;
 
     return isAccessTokenExists;
   }
