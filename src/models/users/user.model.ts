@@ -20,4 +20,12 @@ export class User {
   canBuyItemWithPrice(price: number) {
     return this.balance >= price;
   }
+
+  decreaseBalance(amount: number) {
+    if (!this.canBuyItemWithPrice(amount)) {
+      return;
+    }
+
+    this.balance -= amount;
+  }
 }

@@ -86,7 +86,8 @@
         [
           "app",
           "auth",
-          "items"
+          "items",
+          "purchases"
         ]
       ]
     }
