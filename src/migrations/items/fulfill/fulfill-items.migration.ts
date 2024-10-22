@@ -18,7 +18,7 @@ export class FulfillItemsMigration implements Migration {
     return this.createItemsController.createMany(toCreate);
   }
 
-  private async fetchSkinportItems(): Promise<any> {
+  private async fetchSkinportItems() {
     const items = await this.skinportItemsApi.get();
     const tradableItems = await this.skinportItemsApi.getTradable();
 

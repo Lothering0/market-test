@@ -25,7 +25,9 @@ export class ItemsRepository {
 
     const cachedData = await this.cacheManager.get(CACHE_KEY);
 
-    if (cachedData) return cachedData;
+    if (cachedData) {
+      return cachedData;
+    }
 
     const data = await this.sql<Item[]>`SELECT * FROM items`;
 
