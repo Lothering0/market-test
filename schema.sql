@@ -20,13 +20,13 @@ SET row_security = off;
 
 --
 -- TOC entry 3428 (class 1262 OID 16889)
--- Name: data_louna_test; Type: DATABASE; Schema: -; Owner: -
+-- Name: market_test; Type: DATABASE; Schema: -; Owner: -
 --
 
-CREATE DATABASE data_louna_test WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'C.UTF-8';
+CREATE DATABASE market_test WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'C.UTF-8';
 
 
-\connect data_louna_test
+\connect market_test
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
